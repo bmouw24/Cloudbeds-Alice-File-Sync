@@ -5,13 +5,11 @@ var CLIENT_SECRET = 'XXXX';
 var PROPERTY_ID = 'XXXX';
 var PROPERTY_NAME = '<Property Name>';
 var PROPERTY_TIMEZONE = 'America/Denver';
-
+var DESTINATION_EMAIL = '<TEST EMAIL>"; // When ready to go to production, change this to "connect@pms.alice-app.com"
 
 
 //This function creates the Future Arrivals file and emails it to Alice 
 function SendFutureArrivalsEmail() {
-  // Send the CSV of the spreadsheet to this email address
-  var recipients = "connect@pms.alice-app.com";
 
   // call reservations to get get all future reservations.
   var reservations = getReservations();
@@ -27,15 +25,13 @@ function SendFutureArrivalsEmail() {
   //Logger.log(contents);
 
   //Send the email with the sync file as an attached CSV
-  MailApp.sendEmail(recipients, subject, body, {attachments:[{fileName:PROPERTY_NAME+"_Future_Arrivals.csv", content:contents, mimeType:"application//csv"}]});
+  MailApp.sendEmail(DESTINATION_EMAIL, subject, body, {attachments:[{fileName:PROPERTY_NAME+"_Future_Arrivals.csv", content:contents, mimeType:"application//csv"}]});
 }
 
 
 
 //This function creates the Future Arrivals file and emails it to Alice 
 function SendInHouseEmail() {
-  // Send the CSV of the spreadsheet to this email address
-  var recipients = "connect@pms.alice-app.com";
 
   // call reservations to get get all future reservations.
   var reservations = getReservations();
@@ -51,7 +47,7 @@ function SendInHouseEmail() {
   //Logger.log(contents);
 
   //Send the email with the sync file as an attached CSV
-  MailApp.sendEmail(recipients, subject, body, {attachments:[{fileName:PROPERTY_NAME+"_In_House.csv", content:contents, mimeType:"application//csv"}]});
+  MailApp.sendEmail(DESTINATION_EMAILS, subject, body, {attachments:[{fileName:PROPERTY_NAME+"_In_House.csv", content:contents, mimeType:"application//csv"}]});
 }
 
 
